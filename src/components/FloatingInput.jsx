@@ -4,6 +4,7 @@ function FloatingInput({ id, label, type = 'text', isTextArea = false }) {
       <label className="group relative block">
         <textarea
           id={id}
+          name={id}
           required
           rows={5}
           placeholder=" "
@@ -21,6 +22,7 @@ function FloatingInput({ id, label, type = 'text', isTextArea = false }) {
     <label className="group relative block">
       <input
         id={id}
+        name={id}
         type={type}
         required
         placeholder=" "

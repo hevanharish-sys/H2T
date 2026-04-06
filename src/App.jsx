@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
+import { supabase } from './supabase'
 import { ArrowRight, Blocks, Mail, Sparkles, Waves } from 'lucide-react'
 import CountUp from './components/CountUp'
 import CursorOrb from './components/CursorOrb'
@@ -9,6 +10,7 @@ import MagneticButton from './components/MagneticButton'
 import Reveal from './components/Reveal'
 import ScrollProgress from './components/ScrollProgress'
 import SectionHeading from './components/SectionHeading'
+import PillNav from './components/PillNav'
 import {
   aboutTags,
   contactMeta,
@@ -42,10 +44,56 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [prefersReducedMotion])
 
-  const handleSubmit = (event) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    setSent(true)
-    window.setTimeout(() => setSent(false), 2400)
+    setIsSubmitting(true)
+    
+    const formData = new FormData(event.target)
+    const data = Object.fromEntries(formData)
+
+    try {
+      // 1. Store in Supabase
+      const { error: supabaseError } = await supabase
+        .from('leads')
+        .insert([
+          {
+            name: data.name,
+            email: data.email,
+            company: data.company,
+            budget: data.budget,
+            message: data.message
+          }
+        ])
+
+      if (supabaseError) {
+        console.warn('Supabase Insert Error:', supabaseError)
+      }
+
+      // 2. Send via Web3Forms
+      formData.append("access_key", "81578801-2b06-4662-bc9b-6a6d2d0f1520")
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSent(true)
+        event.target.reset()
+        window.setTimeout(() => setSent(false), 3000)
+      } else {
+        console.error("Form submission failed:", result)
+        alert('Something went wrong. Please try again.')
+      }
+    } catch (error) {
+      console.error("Form submission error:", error)
+      alert('An error occurred. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -57,42 +105,16 @@ function App() {
       <div className="ambient-light ambient-light-left" />
       <div className="ambient-light ambient-light-right" />
 
-      <header className="sticky top-0 z-50 mx-auto w-full max-w-[1280px] px-4 pt-4 sm:px-6">
-        <nav className="glass-card flex items-center justify-between rounded-full border border-[#d7e9fb] px-5 py-4 sm:px-7">
-          <a
-            href="#hero"
-            data-cursor="interactive"
-            className="flex items-center text-sm font-semibold text-neutral-950"
-          >
-            <img
-              src="/h2t-logo.png"
-              alt="H2T Technologies logo"
-              className="h-12 w-auto object-contain sm:h-14"
-            />
-          </a>
-
-          <div className="hidden items-center gap-8 md:flex">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                data-cursor="interactive"
-                className="nav-link text-sm font-medium text-neutral-600"
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-
-          <a
-            href="#contact"
-            data-cursor="interactive"
-            className="inline-flex items-center gap-2 rounded-full border border-[#d7e9fb] bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-neutral-950 transition hover:border-[#147be0] hover:bg-white hover:text-[#147be0]"
-          >
-            Let&apos;s talk
-            <ArrowRight className="h-4 w-4" />
-          </a>
-        </nav>
+      <header className="fixed top-0 left-0 right-0 z-[100] flex w-full justify-center px-4 pt-6 sm:px-6">
+        <PillNav
+          logo="/h2t-logo.png"
+          logoAlt="H2T Technologies"
+          items={navItems}
+          baseColor="rgba(255, 255, 255, 0.45)"
+          pillColor="#147be0"
+          hoveredPillTextColor="#ffffff"
+          pillTextColor="#1e293b"
+        />
       </header>
 
       <main>
@@ -467,12 +489,21 @@ function App() {
                 <div className="mt-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
                   <button
                     type="submit"
-                    data-cursor="interactive"
-                    className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[linear-gradient(135deg,#0f68c8_0%,#147be0_55%,#33a2ff_100%)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[0_18px_45px_rgba(20,123,224,0.24)] transition duration-300 hover:shadow-[0_22px_60px_rgba(20,123,224,0.34)]"
+                    disabled={isSubmitting}
+                    className="animated-button"
                   >
-                    <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.22),transparent)] transition duration-700 group-hover:translate-x-full" />
-                    <span className="relative">Submit Request</span>
-                    <ArrowRight className="relative h-4 w-4" />
+                    <svg xmlns="http://www.w3.org/2000/svg" className="arr-2" viewBox="0 0 24 24">
+                      <path
+                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                      ></path>
+                    </svg>
+                    <span className="text">{isSubmitting ? 'S E N D I N G . . .' : 'S U B M I T   R E Q U E S T'}</span>
+                    <span className="circle"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="arr-1" viewBox="0 0 24 24">
+                      <path
+                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                      ></path>
+                    </svg>
                   </button>
 
                   <MotionDiv
@@ -492,18 +523,6 @@ function App() {
       <footer className="border-t border-[#d7e9fb] bg-white/70 py-8 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1280px] flex-col gap-5 px-4 text-sm text-neutral-500 sm:px-6 md:flex-row md:items-center md:justify-between">
           <p>&copy; 2026 H2T Technologies. Built for future-ready brands.</p>
-          <div className="flex flex-wrap gap-6">
-            {['Behance', 'LinkedIn', 'Dribbble', 'Instagram'].map((item) => (
-              <a
-                key={item}
-                href="#"
-                data-cursor="interactive"
-                className="nav-link font-medium text-neutral-600"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
         </div>
       </footer>
     </div>
