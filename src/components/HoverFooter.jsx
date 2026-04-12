@@ -6,7 +6,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { FooterBackgroundGradient, TextHoverEffect } from "./ui/hover-footer";
-import { navItems, socialLinks, digitalServices, creativeServices } from "../data";
+import { navItems, socialLinks, digitalServices } from "../data";
 
 function HoverFooter() {
   const solutionLinks = [
