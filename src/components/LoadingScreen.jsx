@@ -34,25 +34,27 @@ const LoadingScreen = ({ onComplete }) => {
         />
       </div>
       
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center pointer-events-none mt-20">
-        <motion.h1 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-          className="text-white text-5xl md:text-7xl lg:text-8xl font-black font-clash uppercase tracking-tighter"
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          transition={{ duration: 2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative"
         >
-          H2T Technologies
-        </motion.h1>
+          {/* Subtle glow behind logo */}
+          <div className="absolute inset-0 bg-blue-500/20 blur-[60px] rounded-full scale-150" />
+          
+          <img 
+            src="/h2t-logo.jpeg" 
+            alt="H2T Technologies" 
+            className="w-48 h-48 md:w-64 md:h-64 object-contain rounded-[2rem] relative z-10 shadow-2xl"
+          />
+        </motion.div>
       </div>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
-        className="relative z-10 mb-16 text-white/40 uppercase tracking-[0.5em] text-xs md:text-sm font-bold pointer-events-none"
-      >
-        design <span className="mx-4 text-white/20">•</span> inspire <span className="mx-4 text-white/20">•</span> create
-      </motion.div>
+      {/* Hidden spacer to keep logo centered vertically via flex-between if needed, 
+          but with flex-1 + justify-center above it is already centered. 
+          The user wanted "remove the text", so tagline is gone. */}
     </motion.div>
   );
 };
