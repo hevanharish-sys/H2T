@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { services } from '../data'
+import { digitalServices } from '../data'
 import Reveal from './Reveal'
 
 const ServiceCard = ({ service, index }) => {
@@ -70,7 +70,7 @@ const BentoServices = () => {
         </Reveal>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {services.map((service, idx) => (
+          {digitalServices.map((service, idx) => (
             <Reveal key={service.title} delay={idx * 100}>
               <ServiceCard service={service} index={idx} />
             </Reveal>

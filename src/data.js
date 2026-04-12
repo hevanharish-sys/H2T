@@ -21,7 +21,7 @@ import { SiTelegram, SiInstagram, SiGmail } from 'react-icons/si'
 export const navItems = [
   { name: 'Home', href: '/' },
   { name: 'Digital Solutions', href: '/digital-solutions' },
-  { name: 'Creative Solutions', href: '/creative-solutions' },
+  { name: 'Pricing', href: '/digital-solutions#pricing' },
   { name: 'Contact', href: '/#contact' },
 ]
 
@@ -91,46 +91,8 @@ export const digitalServices = [
   },
 ]
 
-export const creativeServices = [
-  {
-    slug: 'video-editing',
-    title: 'Video Editing',
-    description: 'Professional video editing and post-production for social media and marketing.',
-    icon: Video,
-    features: ['Montage & Effects', 'Color Grading', 'Motion Graphics', 'Sound Design']
-  },
-  {
-    slug: 'banner-creation',
-    title: 'Banner Creation',
-    description: 'Eye-catching digital banners and social media assets to boost brand visibility.',
-    icon: ImageIcon,
-    features: ['Ad Campaigns', 'Social Banners', 'Static & Animated', 'Brand Alignment']
-  },
-  {
-    slug: 'content-creation',
-    title: 'Content Creation',
-    description: 'Engaging and strategic content for blogs, social media, and websites.',
-    icon: PenTool,
-    features: ['Blog Articles', 'Social Posts', 'Copywriting', 'Brand Voice']
-  },
-  {
-    slug: 'ppt-creation',
-    title: 'PPT Creation',
-    description: 'High-impact presentation designs for business pitches and corporate meetings.',
-    icon: Presentation,
-    features: ['Slide Design', 'Data Viz', 'Animations', 'Template Design']
-  },
-  {
-    slug: 'pitch-deck',
-    title: 'Pitch Deck',
-    description: 'Specialized investor-ready pitch decks designed to secure funding.',
-    icon: Target,
-    features: ['Storytelling', 'Financial Charts', 'Competitor Analysis', 'Fundraising Focus']
-  },
-]
-
 // Legacy services array for compatibility during transition
-export const services = [...digitalServices, ...creativeServices];
+export const services = [...digitalServices];
 
 export const projects = [
   {
@@ -304,36 +266,7 @@ export const digitalPricing = [
   }
 ];
 
-export const creativePricing = [
-  {
-    id: 'cre-standard',
-    name: 'Content Starter',
-    prices: {
-      INR: { current: '₹9,999', period: 'Pack' },
-      USD: { current: '$129', period: 'Pack' }
-    },
-    features: ['5 Social Banners', '1 Promo Video (30s)', 'Basic Copywriting', '3 Revisions']
-  },
-  {
-    id: 'cre-growth',
-    name: 'Brand Identity',
-    prices: {
-      INR: { current: '₹29,999', period: 'Pack' },
-      USD: { current: '$399', period: 'Pack' }
-    },
-    features: ['Logo & Branding', 'Investor Pitch Deck', 'Premium Video Intro', 'Custom Graphics'],
-    highlighted: true
-  },
-  {
-    id: 'cre-elite',
-    name: 'Production House',
-    prices: {
-      INR: { current: 'Custom', period: 'Quote' },
-      USD: { current: 'Custom', period: 'Quote' }
-    },
-    features: ['Full Video Production', 'Strategic Content Plan', 'Enterprise Deck', '3D Motion Graphics']
-  }
-];
+
 
 export const socialLinks = [
   {

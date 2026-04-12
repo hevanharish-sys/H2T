@@ -5,12 +5,25 @@ import LoadingScreen from './components/LoadingScreen'
 import MainLayout from './layout/MainLayout'
 import Home from './pages/Home'
 import DigitalSolutions from './pages/DigitalSolutions'
-import CreativeSolutions from './pages/CreativeSolutions'
 import ProjectCalculatorPage from './pages/ProjectCalculatorPage'
 
 function App() {
   const [loading, setLoading] = useState(true)
   const location = useLocation()
+
+  useEffect(() => {
+    // Handle hash scrolling
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     // Add Visme script globally
@@ -27,7 +40,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="w-full max-w-[100vw] overflow-x-hidden min-h-screen relative">
       <AnimatePresence mode="wait">
         {loading && (
           <LoadingScreen key="loader" onComplete={() => setLoading(false)} />
@@ -36,21 +49,20 @@ function App() {
 
       <div style={{ 
         opacity: loading ? 0 : 1, 
-        transition: "opacity 0.5s ease-out",
+        transition: "opacity 0.8s ease-out",
         visibility: loading ? 'hidden' : 'visible'
       }}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route element={<MainLayout />}>
-              <Route index element={<Home loading={loading} />} />
+              <Route index element={<Home />} />
               <Route path="digital-solutions" element={<DigitalSolutions />} />
-              <Route path="creative-solutions" element={<CreativeSolutions />} />
               <Route path="project-estimation" element={<ProjectCalculatorPage />} />
             </Route>
           </Routes>
         </AnimatePresence>
       </div>
-    </>
+    </div>
   )
 }
 

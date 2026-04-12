@@ -12,13 +12,22 @@ import ContactSection from '../components/ContactSection'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-function Home({ loading }) {
+function Home() {
   return (
     <>
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen pt-40 pb-36 overflow-hidden bg-[#FBF6EE]" style={{ isolation: 'isolate' }}>
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-100">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            defaultMuted 
+            playsInline 
+            preload="auto" 
+            onCanPlay={(e) => e.target.play()}
+            className="absolute inset-0 w-full h-full object-cover z-0 opacity-100 pt-0"
+          >
             <source src="https://res.cloudinary.com/dfonotyfb/video/upload/v1775585556/dds3_1_rqhg7x.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#FBF6EE]/10 via-transparent to-[#FBF6EE]/30" />
@@ -31,15 +40,11 @@ function Home({ loading }) {
             </div>
           </Reveal>
           <h1 className="hero-title uppercase text-center mx-auto">
-            {!loading && (
-              <>
-                <CharacterAnimate text="Architecting " delay={0.1} />
-                <br />
-                <CharacterAnimate text="Digital " delay={0.6} />
-                <br />
-                <CharacterAnimate text="Masterpieces" delay={1.2} />
-              </>
-            )}
+            <CharacterAnimate text="Architecting " delay={0.1} />
+            <br />
+            <CharacterAnimate text="Digital " delay={0.6} />
+            <br />
+            <CharacterAnimate text="Masterpieces" delay={1.2} />
           </h1>
           <Reveal delay={200}>
             <p className="hero-description mt-8 mb-12 max-w-lg mx-auto text-center">
@@ -111,7 +116,7 @@ function Home({ loading }) {
       <ScrollVelocity 
         texts={['INNOVATION • IMPACT • GROWTH • DESIGN • EXCELLENCE']} 
         velocity={60} 
-        className="text-[#3B82F6] font-black text-6xl md:text-8xl tracking-tighter opacity-15 my-24"
+        className="text-[#3B82F6] font-black text-6xl md:text-8xl tracking-tighter opacity-80 my-24 drop-shadow-sm"
       />
 
       <ContactSection />

@@ -3,170 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Check, ArrowUpRight, TrendingUp, Layout, Smartphone, Briefcase, Zap, Globe, Send, Mail } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import LogoisumHero from '../components/LogoisumHero'
-import FullScreenScrollFX from '../components/ui/full-screen-scroll-fx'
+import CardSwapWorkSection from '../components/ui/card-swap-work-section'
 import { InteractiveRobotSpline } from '../components/ui/interactive-3d-robot'
 import { Card } from '../components/ui/card'
-import { socialLinks } from '../data'
+import { socialLinks, digitalServices } from '../data'
 import AgencyPricingSection from '../components/ui/pricing-section-4'
 import { ErrorBoundary } from '../components/ErrorBoundary'
 
-const fxSections = [
-  {
-    leftLabel: "Pixel Craft",
-    title: "Minimal Design",
-    rightLabel: "WORK",
-    url: "https://pixel-craft-studio-one.vercel.app/",
-    renderBackground: (active, near) => (
-      <div className={`absolute inset-0 w-full h-full bg-black transition-all duration-1000 ${active ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
-        {!near && !active ? (
-          <div className="w-full h-full flex items-center justify-center bg-[#050505]">
-            <div className="w-24 h-24 border-b-2 border-white/20 rounded-full animate-spin opacity-20" />
-          </div>
-        ) : (
-          <iframe 
-            src="https://pixel-craft-studio-one.vercel.app/" 
-            className={`w-full h-full border-none transition-opacity duration-1000 ${active ? 'opacity-100' : 'opacity-30'}`}
-            title="Pixel Craft"
-            loading="lazy"
-          />
-        )}
-      </div>
-    )
-  },
-  {
-    leftLabel: "Xtrme Logistics",
-    title: "SaaS Platform",
-    rightLabel: "WORK",
-    url: "https://car-site-psi.vercel.app/",
-    renderBackground: (active, near) => (
-      <div className={`absolute inset-0 w-full h-full bg-black transition-all duration-1000 ${active ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
-        {!near && !active ? (
-          <div className="w-full h-full flex items-center justify-center bg-[#050505]">
-            <div className="w-24 h-24 border-b-2 border-white/20 rounded-full animate-spin opacity-20" />
-          </div>
-        ) : (
-          <iframe 
-            src="https://car-site-psi.vercel.app/" 
-            className={`w-full h-full border-none transition-opacity duration-1000 ${active ? 'opacity-100' : 'opacity-30'}`}
-            title="Xtrme Logistics"
-            loading="lazy"
-          />
-        )}
-      </div>
-    )
-  },
-  {
-    leftLabel: "Page One",
-    title: "Landing Page",
-    rightLabel: "WORK",
-    url: "https://page-one-phi.vercel.app/",
-    renderBackground: (active, near) => (
-      <div className={`absolute inset-0 w-full h-full bg-black transition-all duration-1000 ${active ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
-        {!near && !active ? (
-          <div className="w-full h-full flex items-center justify-center bg-[#050505]">
-            <div className="w-24 h-24 border-b-2 border-white/20 rounded-full animate-spin opacity-20" />
-          </div>
-        ) : (
-          <iframe 
-            src="https://page-one-phi.vercel.app/" 
-            className={`w-full h-full border-none transition-opacity duration-1000 ${active ? 'opacity-100' : 'opacity-30'}`}
-            title="Page One"
-            loading="lazy"
-          />
-        )}
-      </div>
-    )
-  },
-  {
-    leftLabel: "Xtrme AI",
-    title: "Automation",
-    rightLabel: "WORK",
-    url: "https://heroic-entry.vercel.app/",
-    renderBackground: (active, near) => (
-      <div className={`absolute inset-0 w-full h-full bg-black transition-all duration-1000 ${active ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
-        {!near && !active ? (
-          <div className="w-full h-full flex items-center justify-center bg-[#050505]">
-            <div className="w-24 h-24 border-b-2 border-white/20 rounded-full animate-spin opacity-20" />
-          </div>
-        ) : (
-          <iframe 
-            src="https://heroic-entry.vercel.app/" 
-            className={`w-full h-full border-none transition-opacity duration-1000 ${active ? 'opacity-100' : 'opacity-30'}`}
-            title="Xtrme AI"
-            loading="lazy"
-          />
-        )}
-      </div>
-    )
-  },
-  {
-    leftLabel: "Elite Trader",
-    title: "FinTech App",
-    rightLabel: "WORK",
-    url: "https://theelitetrader.in/",
-    renderBackground: (active, near) => (
-      <div className={`absolute inset-0 w-full h-full bg-black transition-all duration-1000 ${active ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
-        {!near && !active ? (
-          <div className="w-full h-full flex items-center justify-center bg-[#050505]">
-            <div className="w-24 h-24 border-b-2 border-white/20 rounded-full animate-spin opacity-20" />
-          </div>
-        ) : (
-          <iframe 
-            src="https://theelitetrader.in/" 
-            className={`w-full h-full border-none transition-opacity duration-1000 ${active ? 'opacity-100' : 'opacity-30'}`}
-            title="Elite Trader"
-            loading="lazy"
-          />
-        )}
-      </div>
-    )
-  }
-];
+// Work section payload managed natively via the unified data.js now
 
-const agencyServices = [
-  {
-    slug: 'digital-marketing',
-    title: 'Performance Marketing',
-    description: 'Data-driven campaigns across social and search. We focus on ROAS, high-ticket lead generation, and scalable growth architecture.',
-    icon: TrendingUp,
-    features: ['Meta & Search Ads', 'SEO Optimization', 'Conversion Tracking', 'A/B Hook Testing']
-  },
-  {
-    slug: 'web-design',
-    title: 'UI/UX & Web Design',
-    description: 'Bespoke, high-fidelity interfaces that merge aesthetics with conversion psychology. Designing experiences, not just pages.',
-    icon: Layout,
-    features: ['Figma Prototypes', 'Design Systems', 'Micro-interactions', 'User Journey Mapping']
-  },
-  {
-    slug: 'app-development',
-    title: 'Application Dev',
-    description: 'Scalable iOS, Android, and Web applications built on modern stacks. From MVP to enterprise-grade infrastructure.',
-    icon: Smartphone,
-    features: ['React Native & Flutter', 'Cloud Backends', 'API Architecture', 'Low-latency Data']
-  },
-  {
-    slug: 'portfolio-building',
-    title: 'Portfolio Architecture',
-    description: 'World-class personal branding platforms for agencies, creatives, and executives to showcase their legacy.',
-    icon: Briefcase,
-    features: ['Brand Identity', 'Case Study Design', 'WebGL Integrations', 'Premium Typography']
-  },
-  {
-    slug: 'content-strategy',
-    title: 'Content Strategy',
-    description: 'Commanding narratives that position your brand as an industry authority across all digital touchpoints.',
-    icon: Zap,
-    features: ['Copywriting', 'Brand Voice', 'Asset Curation', 'Omnichannel Planning']
-  },
-  {
-    slug: 'global-ecommerce',
-    title: 'eCommerce Scaling',
-    description: 'Headless commerce solutions designed for ultra-fast checkout flows and maximal average order value.',
-    icon: Globe,
-    features: ['Shopify Plus', 'Custom Checkouts', 'Inventory Sync', 'Performance Audits']
-  },
-];
+
 
 // Pricing data is now centralized within the AgencyPricingSection component
 
@@ -223,7 +69,7 @@ const DigitalSolutionsPage = () => {
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {agencyServices.map((service, idx) => (
+            {digitalServices.map((service, idx) => (
               <Reveal key={service.slug} delay={idx * 100}>
                 <div className="group relative p-12 rounded-[2.5rem] bg-neutral-900/40 border border-white/5 hover:bg-neutral-900/80 transition-all duration-700 hover:-translate-y-3 shadow-2xl">
                   <div className="w-16 h-16 rounded-[20px] bg-white text-black flex items-center justify-center mb-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
@@ -253,14 +99,7 @@ const DigitalSolutionsPage = () => {
 
       {/* Work Section Anchor */}
       <div id="work-section" className="scroll-mt-24">
-        {/* Full Screen Scroll Effect Section */}
-        <FullScreenScrollFX
-          sections={fxSections}
-          smoothScroll={true}
-          parallaxAmount={8}
-          durations={{ change: 0.9, snap: 800 }}
-          className="bg-black"
-        />
+        <CardSwapWorkSection />
       </div>
 
       {/* Pricing Section */}
@@ -273,7 +112,8 @@ const DigitalSolutionsPage = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
 
         {/* Full-width Robot Background */}
-        <div className="absolute inset-x-0 top-0 bottom-0 z-0 opacity-40">
+        {/* We push the bottom edge down by 100px to force the Spline watermark out of the overflow-hidden clipping mask */}
+        <div className="absolute inset-x-0 top-0 z-0 opacity-40" style={{ bottom: '-100px' }}>
           <InteractiveRobotSpline 
             scene="https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode"
             onLoad={onSplineLoad}

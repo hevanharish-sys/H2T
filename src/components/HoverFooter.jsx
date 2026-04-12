@@ -9,10 +9,10 @@ import { FooterBackgroundGradient, TextHoverEffect } from "./ui/hover-footer";
 import { navItems, socialLinks, digitalServices, creativeServices } from "../data";
 
 function HoverFooter() {
-  // Combine some services for the footer column
   const solutionLinks = [
-    ...digitalServices.slice(0, 3).map(s => ({ label: s.title, href: `/digital-solutions#${s.slug}` })),
-    ...creativeServices.slice(0, 2).map(s => ({ label: s.title, href: `/creative-solutions#${s.slug}` }))
+    { label: 'Digital Solutions', href: '/digital-solutions' },
+    { label: 'Pricing & Tiers', href: '/digital-solutions#pricing' },
+    { label: 'Project Estimator', href: '/project-estimation' }
   ];
 
   return (
@@ -21,11 +21,8 @@ function HoverFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-16 pb-12">
           {/* Brand section */}
           <div className="flex flex-col space-y-6">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-xl bg-[#3B82F6] flex items-center justify-center">
-                <span className="text-white text-xl font-black">H2T</span>
-              </div>
-              <span className="text-white text-2xl font-black font-clash tracking-tight uppercase">Technologies</span>
+            <div className="flex items-center">
+              <img src="/h2t-logo.jpeg" alt="H2T Technologies" className="h-16 w-auto object-contain" />
             </div>
             <p className="text-sm leading-relaxed max-w-xs font-medium">
               Architecting the next generation of digital landscapes through AI-first design and high-performance engineering.

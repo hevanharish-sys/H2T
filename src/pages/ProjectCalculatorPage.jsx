@@ -119,7 +119,7 @@ const ProjectCalculatorPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-[#FF5656]/30">
+    <div className="min-h-screen bg-black text-white selection:bg-[#3B82F6]/30">
       {/* Navigation */}
       <div className="fixed top-8 left-8 z-[100]">
         <Link 
@@ -151,7 +151,7 @@ const ProjectCalculatorPage = () => {
                 onClick={() => setCurrency(cur)}
                 className={cn(
                   "px-8 py-2 rounded-full text-[10px] font-black tracking-widest transition-all",
-                  currency === cur ? "bg-[#FF5656] text-white shadow-lg" : "text-white/40 hover:text-white"
+                  currency === cur ? "bg-[#3B82F6] text-white shadow-lg" : "text-white/40 hover:text-white"
                 )}
               >
                 {cur}
@@ -166,7 +166,7 @@ const ProjectCalculatorPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 rounded-[3.5rem] overflow-hidden border border-white/5 bg-[#0D0D0D] shadow-2xl">
           
           {/* LEFT COLUMN: Input Form */}
-          <div className="p-8 md:p-14 lg:p-16 space-y-16 divide-y divide-white/5">
+          <div className="p-5 sm:p-8 md:p-14 lg:p-16 space-y-16 divide-y divide-white/5">
             
             {/* Service Type */}
             <div className="space-y-8">
@@ -187,13 +187,13 @@ const ProjectCalculatorPage = () => {
                     />
                     <div className={cn(
                       "p-6 rounded-3xl border transition-all flex items-center gap-4",
-                      serviceType === opt.id ? "bg-[#FF5656]/5 border-[#FF5656]" : "bg-white/[0.02] border-white/5 group-hover:bg-white/[0.05]"
+                      serviceType === opt.id ? "bg-[#3B82F6]/5 border-[#3B82F6]" : "bg-white/[0.02] border-white/5 group-hover:bg-white/[0.05]"
                     )}>
                       <div className={cn(
                         "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all",
-                        serviceType === opt.id ? "border-[#FF5656]" : "border-white/20"
+                        serviceType === opt.id ? "border-[#3B82F6]" : "border-white/20"
                       )}>
-                        {serviceType === opt.id && <div className="w-2 h-2 rounded-full bg-[#FF5656]" />}
+                        {serviceType === opt.id && <div className="w-2 h-2 rounded-full bg-[#3B82F6]" />}
                       </div>
                       <span className={cn("text-xs font-black uppercase tracking-widest", serviceType === opt.id ? "text-white" : "text-white/40")}>
                         {opt.label}
@@ -208,7 +208,7 @@ const ProjectCalculatorPage = () => {
             <div className="pt-16 space-y-10">
               <div className="flex justify-between items-end">
                 <h3 className="text-lg font-bold uppercase tracking-tight">Number of Pages</h3>
-                <span className="text-4xl font-black text-[#FF5656]">{pages}</span>
+                <span className="text-4xl font-black text-[#3B82F6]">{pages}</span>
               </div>
               <div className="px-2">
                 <Slider.Root
@@ -220,10 +220,10 @@ const ProjectCalculatorPage = () => {
                   onValueChange={([val]) => setPages(val)}
                 >
                   <Slider.Track className="bg-white/10 relative grow rounded-full h-1.5">
-                    <Slider.Range className="absolute bg-[#FF5656] rounded-full h-full" />
+                    <Slider.Range className="absolute bg-[#3B82F6] rounded-full h-full" />
                   </Slider.Track>
                   <Slider.Thumb
-                    className="block w-8 h-8 bg-white border-4 border-[#FF5656] rounded-full hover:scale-110 active:scale-95 transition-all outline-none"
+                    className="block w-8 h-8 bg-white border-4 border-[#3B82F6] rounded-full hover:scale-110 active:scale-95 transition-all outline-none"
                     aria-label="Pages"
                   />
                 </Slider.Root>
@@ -243,19 +243,19 @@ const ProjectCalculatorPage = () => {
                   return (
                     <label key={opt.id} className="cursor-pointer group block">
                       <div className={cn(
-                        "p-8 rounded-3xl border transition-all flex items-center justify-between",
-                        isActive ? "bg-[#FF5656]/5 border-[#FF5656]" : "bg-white/[0.02] border-white/5"
+                        "p-6 sm:p-8 rounded-3xl border transition-all flex items-center justify-between flex-wrap gap-4",
+                        isActive ? "bg-[#3B82F6]/5 border-[#3B82F6]" : "bg-white/[0.02] border-white/5"
                       )}>
                         <div className="flex items-center gap-6">
                           <div className={cn(
                             "w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all",
-                            isActive ? "bg-[#FF5656] border-[#FF5656]" : "border-white/10"
+                            isActive ? "bg-[#3B82F6] border-[#3B82F6]" : "border-white/10"
                           )}>
                             {isActive && <div className="text-white text-[10px]">✓</div>}
                           </div>
                           <span className="text-sm font-bold text-white/70">{opt.label}</span>
                         </div>
-                        <span className="text-xs font-black text-[#FF5656] uppercase tracking-widest">
+                        <span className="text-xs font-black text-[#3B82F6] uppercase tracking-widest">
                           {currency === 'INR' ? `+₹${opt.cost * exchangeRate}/pg` : `+$${opt.cost}/pg`}
                         </span>
                         <input 
@@ -296,18 +296,18 @@ const ProjectCalculatorPage = () => {
                     />
                     <div className={cn(
                       "p-8 rounded-3xl border transition-all flex items-center justify-between",
-                      timeline === opt.id ? "bg-[#FF5656]/5 border-[#FF5656]" : "bg-white/[0.02] border-white/5"
+                      timeline === opt.id ? "bg-[#3B82F6]/5 border-[#3B82F6]" : "bg-white/[0.02] border-white/5"
                     )}>
                       <div className="flex items-center gap-6">
                         <div className={cn(
                           "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all",
-                          timeline === opt.id ? "border-[#FF5656]" : "border-white/20"
+                          timeline === opt.id ? "border-[#3B82F6]" : "border-white/20"
                         )}>
-                          {timeline === opt.id && <div className="w-2 h-2 rounded-full bg-[#FF5656]" />}
+                          {timeline === opt.id && <div className="w-2 h-2 rounded-full bg-[#3B82F6]" />}
                         </div>
                         <span className="text-sm font-bold text-white/70">{opt.label}</span>
                       </div>
-                      <span className="text-xs font-black text-[#FF5656] uppercase tracking-widest">
+                      <span className="text-xs font-black text-[#3B82F6] uppercase tracking-widest">
                         {opt.id === 'rush' ? (currency === 'INR' ? `+₹${100*exchangeRate}/pg` : opt.tag) : 
                          opt.id === 'fast' ? (currency === 'INR' ? `+₹${25*exchangeRate}/pg` : opt.tag) : 'Free'}
                       </span>
@@ -320,7 +320,7 @@ const ProjectCalculatorPage = () => {
           </div>
 
           {/* RIGHT COLUMN: Cost Breakdown */}
-          <div className="p-8 md:p-14 lg:p-16 bg-white/[0.02] flex flex-col justify-start space-y-8 border-l border-white/5">
+          <div className="p-5 sm:p-8 md:p-14 lg:p-16 bg-white/[0.02] flex flex-col justify-start space-y-8 border-l border-white/5">
             <div>
               <h3 className="text-3xl font-black uppercase tracking-tight mb-4">Estimated Cost</h3>
               <p className="text-neutral-500 text-sm font-medium leading-relaxed max-w-sm">
@@ -348,7 +348,7 @@ const ProjectCalculatorPage = () => {
               </div>
 
               {/* H2T Card (Gradient) */}
-              <div className="p-10 pb-12 rounded-[2.5rem] bg-gradient-to-br from-[#FF5656] to-[#FF8A56] text-black shadow-[0_20px_80px_-15px_rgba(255,86,86,0.3)] space-y-4 relative overflow-hidden group">
+              <div className="p-10 pb-12 rounded-[2.5rem] bg-gradient-to-br from-[#3B82F6] to-[#60A5FA] text-black shadow-[0_20px_80px_-15px_rgba(255,86,86,0.3)] space-y-4 relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:rotate-12 transition-transform">
                   <ListChecks size={120} />
                 </div>
@@ -387,7 +387,7 @@ const ProjectCalculatorPage = () => {
                 className="space-y-16"
               >
                 <div className="text-center space-y-4">
-                  <div className="text-[10px] font-black uppercase tracking-[0.5em] text-[#FF5656]">Quote Lockdown</div>
+                  <div className="text-[10px] font-black uppercase tracking-[0.5em] text-[#3B82F6]">Quote Lockdown</div>
                   <h2 className="text-4xl md:text-5xl font-normal tracking-tighter text-white">Let's build your vision</h2>
                   <p className="text-gray-400 font-medium">Please review your estimate details and share your project specifics.</p>
                 </div>
@@ -401,7 +401,7 @@ const ProjectCalculatorPage = () => {
                     {pages} {pages === 1 ? 'Page' : 'Pages'}
                   </div>
                   {addons.map(id => (
-                    <div key={id} className="px-5 py-2.5 rounded-full bg-[#FF5656]/10 border border-[#FF5656]/20 text-[10px] font-black uppercase tracking-widest text-[#FF5656]">
+                    <div key={id} className="px-5 py-2.5 rounded-full bg-[#3B82F6]/10 border border-[#3B82F6]/20 text-[10px] font-black uppercase tracking-widest text-[#3B82F6]">
                       {CALCULATOR_ADDONS.find(a => a.id === id)?.title}
                     </div>
                   ))}
@@ -420,7 +420,7 @@ const ProjectCalculatorPage = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="you@company.com"
-                        className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-5 text-sm text-white placeholder:text-white/10 focus:outline-none focus:border-[#FF5656]/40 focus:bg-white/[0.07] transition-all"
+                        className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-5 text-sm text-white placeholder:text-white/10 focus:outline-none focus:border-[#3B82F6]/40 focus:bg-white/[0.07] transition-all"
                       />
                     </div>
                     
@@ -435,7 +435,7 @@ const ProjectCalculatorPage = () => {
                           const dial = ALL_COUNTRIES.find(c => c.code === code)?.dial || '+';
                           setPhone(dial + ' ');
                         }}
-                        className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-5 text-sm text-white focus:outline-none focus:border-[#FF5656]/40 focus:bg-white/[0.07] transition-all appearance-none cursor-pointer"
+                        className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-5 text-sm text-white focus:outline-none focus:border-[#3B82F6]/40 focus:bg-white/[0.07] transition-all appearance-none cursor-pointer"
                       >
                         {ALL_COUNTRIES.map(c => (
                           <option key={c.code} value={c.code} className="bg-[#0D0D0D] text-white">
@@ -453,7 +453,7 @@ const ProjectCalculatorPage = () => {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="+1 (555) 000-0000"
-                        className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-5 text-sm text-white placeholder:text-white/10 focus:outline-none focus:border-[#FF5656]/40 focus:bg-white/[0.07] transition-all"
+                        className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-5 text-sm text-white placeholder:text-white/10 focus:outline-none focus:border-[#3B82F6]/40 focus:bg-white/[0.07] transition-all"
                       />
                     </div>
                   </div>
@@ -466,7 +466,7 @@ const ProjectCalculatorPage = () => {
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       placeholder="Tell us more about your requirements, features, or any specific inspirations..."
-                      className="w-full bg-white/5 border border-white/10 rounded-[2rem] px-8 py-6 text-white placeholder:text-white/10 focus:outline-none focus:border-[#FF5656]/40 focus:bg-white/[0.07] transition-all resize-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-[2rem] px-8 py-6 text-white placeholder:text-white/10 focus:outline-none focus:border-[#3B82F6]/40 focus:bg-white/[0.07] transition-all resize-none"
                     />
                   </div>
 
@@ -531,7 +531,7 @@ const ProjectCalculatorPage = () => {
               >
                 <div className="relative inline-block">
                   <div className="w-32 h-32 rounded-full border border-white/20 flex items-center justify-center mb-8 bg-white/[0.02]">
-                    <Check size={48} className="text-[#FF5656]" />
+                    <Check size={48} className="text-[#3B82F6]" />
                   </div>
                 </div>
                 <div className="space-y-4">

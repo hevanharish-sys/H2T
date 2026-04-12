@@ -29,7 +29,7 @@ const MainLayout = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [pathname])
 
-  const isDarkTheme = ['/digital-solutions', '/creative-solutions', '/project-estimation'].includes(pathname) || isScrolledPastHero
+  const isDarkTheme = ['/digital-solutions', '/project-estimation'].includes(pathname) || isScrolledPastHero
 
   return (
     <SmoothScroll>
