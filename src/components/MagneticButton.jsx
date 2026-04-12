@@ -2,44 +2,51 @@ import { useRef } from 'react'
 import { MoveRight } from 'lucide-react'
 import { useReducedMotion } from 'framer-motion'
 
-function MagneticButton({ children, href, variant = 'primary' }) {
+function MagneticButton({ 
+  children, 
+  href, 
+  variant = 'primary', 
+  className = '', 
+  ...props 
+}) {
   const buttonRef = useRef(null)
   const prefersReducedMotion = useReducedMotion()
 
   const handleMove = (event) => {
-    if (prefersReducedMotion || !buttonRef.current) {
-      return
-    }
+    if (prefersReducedMotion || !buttonRef.current) return
 
     const rect = buttonRef.current.getBoundingClientRect()
-    const offsetX = (event.clientX - rect.left - rect.width / 2) * 0.18
-    const offsetY = (event.clientY - rect.top - rect.height / 2) * 0.22
-    buttonRef.current.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`
+    const offsetX = (event.clientX - rect.left - rect.width / 2) * 0.15
+    const offsetY = (event.clientY - rect.top - rect.height / 2) * 0.2
+    buttonRef.current.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0) scale(1.02)`
   }
 
   const handleLeave = () => {
     if (buttonRef.current) {
-      buttonRef.current.style.transform = 'translate3d(0, 0, 0)'
+      buttonRef.current.style.transform = 'translate3d(0, 0, 0) scale(1)'
     }
+  }
+
+  const variants = {
+    primary: 'bg-white text-black hover:bg-neutral-200 shadow-lg',
+    glass: 'bg-white/[0.06] backdrop-blur-md border border-white/15 text-white hover:bg-white/[0.1] hover:border-white/40 shadow-sm'
   }
 
   return (
     <a
       ref={buttonRef}
       href={href}
-      data-cursor="interactive"
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      className={[
-        'group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-6 py-3 text-sm font-semibold tracking-[0.18em] uppercase transition duration-300 will-change-transform',
-        variant === 'primary'
-          ? 'bg-[linear-gradient(135deg,#0f68c8_0%,#147be0_58%,#33a2ff_100%)] text-white shadow-[0_18px_45px_rgba(20,123,224,0.28)]'
-          : 'glass-card border border-[#d7e9fb] text-neutral-900 shadow-[0_18px_40px_rgba(23,23,23,0.08)]',
-      ].join(' ')}
+      className={`group relative inline-flex items-center justify-center px-10 py-5 rounded-2xl font-bold uppercase tracking-widest text-sm transition-all duration-300 no-underline overflow-hidden ${variants[variant]} ${className}`}
+      {...props}
     >
-      <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.75),transparent)] transition duration-700 group-hover:translate-x-full" />
-      <span className="relative">{children}</span>
-      <MoveRight className="relative h-4 w-4 transition duration-300 group-hover:translate-x-1" />
+      {/* Shimmer Effect */}
+      <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-25deg] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
+      
+      <span className="relative z-10 flex items-center gap-3">
+        {children}
+      </span>
     </a>
   )
 }

@@ -1,0 +1,45 @@
+.parallax {
+  position: relative;
+  overflow: hidden;
+  padding: 40px 0;
+  background: #FBF6EE;
+}
+
+.scroller {
+  display: flex;
+  white-space: nowrap;
+  text-align: center;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.scroller span {
+  flex-shrink: 0;
+  padding: 0 60px;
+}
+
+/* Edge fade on black */
+.scroll-velocity-wrapper {
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+  .scroller {
+    font-size: 6rem;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .scroller {
+    font-size: 2.5rem;
+  }
+  .parallax {
+    padding: 20px 0;
+  }
+}

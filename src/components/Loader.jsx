@@ -13,7 +13,7 @@ function Loader() {
 
   return (
     <MotionDiv
-      className="fixed inset-0 z-[90] flex items-center justify-center bg-white/88 backdrop-blur-2xl"
+      className="fixed inset-0 z-[90] flex items-center justify-center bg-black/95 backdrop-blur-2xl"
       animate={{ opacity: visible ? 1 : 0, pointerEvents: visible ? 'auto' : 'none' }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
@@ -22,7 +22,7 @@ function Loader() {
           {Array.from({ length: 8 }).map((_, index) => (
             <MotionSpan
               key={index}
-              className="h-3 rounded-full bg-[linear-gradient(135deg,#0f68c8,#147be0)] shadow-[0_0_18px_rgba(20,123,224,0.24)]"
+              className="h-3 rounded-full bg-[linear-gradient(135deg,#ffffff,#a3a3a3)] shadow-[0_0_18px_rgba(255,255,255,0.2)]"
               animate={{ opacity: [0.25, 1, 0.25], scale: [0.92, 1, 0.92] }}
               transition={{
                 duration: 1.1,
@@ -33,7 +33,7 @@ function Loader() {
             />
           ))}
         </div>
-        <p className="text-xs font-semibold uppercase tracking-[0.5em] text-neutral-500">
+        <p className="text-xs font-bold uppercase tracking-[0.5em] text-white/40 font-clash">
           H2T Technologies
         </p>
       </div>

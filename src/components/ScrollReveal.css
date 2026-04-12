@@ -1,0 +1,31 @@
+.scroll-reveal {
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.scroll-reveal-text {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  font-weight: 900;
+  color: #ffffff;
+  text-align: left;
+}
+
+.word {
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+/* Adjustments for dark theme/light theme */
+.scroll-reveal.dark .scroll-reveal-text {
+  color: #ffffff;
+}
+
+.scroll-reveal.blue .scroll-reveal-text {
+  color: #ffffff;
+}
+
+/* Ensure centering if needed */
+.scroll-reveal.center .scroll-reveal-text {
+  text-align: center;
+}

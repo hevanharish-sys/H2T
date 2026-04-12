@@ -48,7 +48,7 @@ function CursorOrb() {
   return (
     <>
       <MotionDiv
-        className="pointer-events-none fixed left-0 top-0 z-[80] hidden h-7 w-7 rounded-full border border-[#147be0]/30 bg-white/25 shadow-[0_0_30px_rgba(20,123,224,0.2)] backdrop-blur-xl md:block"
+        className="pointer-events-none fixed left-0 top-0 z-[80] hidden h-7 w-7 rounded-full border border-white/30 bg-white/25 shadow-[0_0_30px_rgba(255,255,255,0.2)] backdrop-blur-xl md:block"
         animate={{
           x: position.x - (hovered ? 26 : 14),
           y: position.y - (hovered ? 26 : 14),
@@ -57,7 +57,7 @@ function CursorOrb() {
         transition={{ type: 'spring', stiffness: 380, damping: 28, mass: 0.5 }}
       />
       <MotionDiv
-        className="pointer-events-none fixed left-0 top-0 z-[79] hidden h-12 w-12 rounded-full bg-[radial-gradient(circle,rgba(20,123,224,0.22),rgba(20,123,224,0.01)_70%)] blur-xl md:block"
+        className="pointer-events-none fixed left-0 top-0 z-[79] hidden h-12 w-12 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.22),rgba(255,255,255,0.01)_70%)] blur-xl md:block"
         animate={{
           x: position.x - 24,
           y: position.y - 24,
