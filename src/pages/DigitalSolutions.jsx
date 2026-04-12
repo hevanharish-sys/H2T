@@ -72,7 +72,7 @@ const DigitalSolutionsPage = () => {
             {digitalServices.map((service, idx) => (
               <Reveal key={service.slug} delay={idx * 100}>
                 <div className="group relative p-12 rounded-[2.5rem] bg-neutral-900/40 border border-white/5 hover:bg-neutral-900/80 transition-all duration-700 hover:-translate-y-3 shadow-2xl">
-                  <div className="w-16 h-16 rounded-[20px] bg-white text-black flex items-center justify-center mb-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                  <div className="w-16 h-16 rounded-[20px] bg-[#3B82F6] text-white flex items-center justify-center mb-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-[0_0_40px_rgba(59,130,246,0.3)]">
                     <service.icon size={28} />
                   </div>
                   <h3 className="text-2xl font-bold mb-4 tracking-tight">{service.title}</h3>

@@ -16,9 +16,12 @@ function App() {
     if (location.hash) {
       const element = document.querySelector(location.hash);
       if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+        // Use multiple attempts to ensure scrolling works as dynamic 3D elements load
+        const scrollJob = () => element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        scrollJob();
+        const t1 = setTimeout(scrollJob, 300);
+        const t2 = setTimeout(scrollJob, 800);
+        return () => { clearTimeout(t1); clearTimeout(t2); };
       }
     } else {
       window.scrollTo(0, 0);
